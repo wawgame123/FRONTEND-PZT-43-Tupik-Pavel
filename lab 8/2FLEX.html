@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
@@ -7,22 +7,17 @@
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #0f172a; color: #f1f5f9; padding: 20px; }
-        .adaptive { width: 100%; max-width: 1280px; margin: 0 auto; background: #1e293b; border-radius: 16px; overflow: hidden; box-shadow: 0 10px 25px rgba(0,0,0,0.4); border: 1px solid #334155; }
-        .header { background: #0f172a; color: #38bdf8; text-align: center; padding: 25px; font-size: 20px; font-weight: bold; border-bottom: 2px solid #38bdf8; }
-        .header .student-info { font-size: 13px; color: #fbbf24; margin-top: 6px; font-weight: normal; text-transform: uppercase; letter-spacing: 1px; }
-        
         .nav { background: #334155; text-align: center; padding: 12px; position: relative; }
         .nav a { color: #f1f5f9; margin: 0 15px; text-decoration: none; font-size: 14px; padding: 6px 12px; border-radius: 4px; transition: all 0.3s; }
         .nav a:hover { background: #38bdf8; color: #0f172a; }
         .burger-checkbox, .burger-icon { display: none; }
-        
-        .row { display: flex; flex-direction: row; flex-wrap: wrap; flex-flow: row wrap; justify-content: flex-start; align-content: stretch; align-items: stretch; column-gap: 0; gap: 0; padding: 0; }
-        .block { background: #0f172a; text-align: center; padding: 55px 20px; border: 1px solid #334155; font-weight: 600; color: #38bdf8; transition: all 0.3s; flex-grow: 0; flex-shrink: 1; flex-basis: auto; flex: 0 1 auto; align-self: auto; order: 0; width: 50%; display: flex; flex-direction: column; justify-content: center; align-items: center; }
-        .block:hover { border-color: #fbbf24; color: #fbbf24; z-index: 1; outline: 1px solid #fbbf24; }
 
-        .page-wrapper { position: relative; padding-bottom: 20px; width: 100%; text-align: left; margin: auto; }
-        .bottom-layer { position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); background: white; width: 96%; height: 100px; border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.03); z-index: 1; }
-        .product-card { position: relative; background: white; width: 100%; padding: 30px; border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.05); z-index: 2; color: #333; }
+        .row { display: flex; flex-wrap: wrap; }
+        .block { background: #0f172a; text-align: center; padding: 55px 20px; border: 1px solid #334155; color: #38bdf8; width: 50%; display: flex; flex-direction: column; justify-content: center; align-items: center; }
+
+        .page-wrapper { position: relative; padding-bottom: 20px; width: 100%; text-align: left; }
+        .bottom-layer { position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); background: white; width: 96%; height: 100px; border-radius: 8px; z-index: 1; }
+        .product-card { position: relative; background: white; width: 100%; padding: 30px; border-radius: 8px; z-index: 2; color: #333; }
         .product-title { font-size: 24px; font-weight: 700; margin-bottom: 30px; color: #333; }
         .main-layout { display: grid; grid-template-columns: 1fr 1fr 280px; gap: 20px; align-items: start; }
         .image-section { position: relative; }
@@ -33,41 +28,49 @@
         .main-img-container { width: 100%; margin-bottom: 20px; }
         .main-img-container img { width: 100%; height: auto; display: block; }
         .thumbs { display: flex; gap: 10px; flex-wrap: wrap; }
-        .thumb { width: 60px; height: 60px; border: 1px solid #eee; padding: 5px; cursor: pointer; }
+        .thumb { width: 60px; height: 60px; border: 1px solid #eee; padding: 5px; }
         .thumb img { width: 100%; height: 100%; object-fit: contain; }
-        .specs-section { font-size: 14px; font-weight: normal; }
+        .specs-section { font-size: 14px; font-weight: normal; color: #333; }
         .sku { color: #999; margin-bottom: 20px; display: block; }
         .spec-item { display: flex; margin-bottom: 8px; }
         .spec-label { color: #999; margin-right: 5px; }
         .all-specs { color: #e91e63; text-decoration: none; display: inline-block; margin-top: 20px; border-bottom: 1px dashed #e91e63; }
-        .buy-box { background: #f9f9f9; padding: 25px; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.08); text-align: left; border: 1px solid #eee; font-weight: normal; }
+        .buy-box { background: #f9f9f9; padding: 25px; border-radius: 12px; text-align: left; border: 1px solid #eee; font-weight: normal; color: #333; }
         .price { font-size: 28px; font-weight: 700; margin-bottom: 10px; color: #333; }
         .price span { font-size: 16px; font-weight: normal; }
         .stock-status { color: #e91e63; font-size: 13px; margin-bottom: 20px; display: block; }
         .delivery-note { font-size: 12px; color: #666; line-height: 1.5; margin-bottom: 30px; }
-        .add-to-cart { background-color: #e81c35; color: white; border: none; width: 100%; padding: 15px; border-radius: 25px; font-size: 14px; font-weight: 600; cursor: pointer; transition: background 0.2s; }
-        .add-to-cart:hover { background-color: #d81b60; }
-        
+        .add-to-cart { background-color: #e81c35; color: white; border: none; width: 100%; padding: 15px; border-radius: 25px; font-size: 14px; font-weight: 600; cursor: pointer; }
+
         .developer-name { font-size: 18px; line-height: 1.5; color: #f1f5f9; }
         .developer-name span { color: #38bdf8; display: block; margin-top: 10px; font-size: 22px; }
-        .profile-photo { max-width: 200px; width: 100%; height: auto; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.3); border: 2px solid #38bdf8; }
+        .profile-photo { max-width: 200px; width: 100%; height: auto; border-radius: 12px; border: 2px solid #38bdf8; }
 
-        @media (max-width: 1400px) {
-            .main-layout { grid-template-columns: 1fr 1fr; }
-            .buy-box { grid-column: span 2; }
-        }
-        @media (max-width: 1200px) and (min-width: 769px) {
-            .block { width: 33.333%; }
-            .main-layout { grid-template-columns: 1fr; }
-            .buy-box { grid-column: span 1; }
-        }
-        @media (max-width: 850px) {
-            .main-layout { grid-template-columns: 1fr; }
-            .buy-box { grid-column: span 1; }
-        }
+        .block.order-block { padding: 20px; align-items: stretch; justify-content: flex-start; color: #333; }
+        .order-wrap { width: 100%; background: #fff; border-radius: 10px; padding: 18px; }
+        .order-title { color: #666; font-size: 20px; font-weight: 400; padding-bottom: 12px; margin-bottom: 18px; border-bottom: 1px dotted #ccc; text-align: left; }
+        .order-main { display: grid; grid-template-columns: 320px 1fr; gap: 24px; }
+        .order-form { display: grid; gap: 10px; }
+        .order-form label { font-size: 12px; font-weight: 700; color: #333; text-align: left; }
+        .order-form input, .order-form select, .order-form textarea { width: 100%; border: 1px solid #ccc; border-radius: 2px; padding: 8px; font-size: 12px; color: #333; background: #fff; }
+        .order-form textarea { min-height: 58px; resize: vertical; }
+        .order-summary { text-align: left; }
+        .order-head { font-size: 13px; margin-bottom: 10px; color: #333; }
+        .order-grid { display: grid; grid-template-columns: 2fr 60px 70px 70px; border: 1px solid #ccc; }
+        .order-cell { padding: 8px; border-bottom: 1px solid #e5e7eb; border-right: 1px solid #e5e7eb; font-size: 12px; color: #333; background: #fff; }
+        .order-cell:nth-child(4n) { border-right: none; }
+        .order-cell.head { background: #f1f5f9; font-weight: 700; }
+        .order-prod { display: grid; grid-template-columns: 38px 1fr; gap: 8px; align-items: center; }
+        .order-prod img { width: 38px; height: 38px; object-fit: cover; border: 1px solid #e5e7eb; }
+        .order-center { text-align: center; }
+        .order-total { margin-top: 10px; display: grid; grid-template-columns: 1fr auto; font-size: 13px; color: #333; }
+        .order-total strong { color: #db0f47; font-size: 18px; }
+        .order-btn-wrap { margin-top: 12px; text-align: right; }
+        .order-btn { background: #db0f47; color: #fff; border: none; padding: 10px 18px; font-size: 13px; cursor: pointer; }
+
+        @media (max-width: 1200px) and (min-width: 769px) { .block { width: 33.333%; } .main-layout { grid-template-columns: 1fr; } }
+        @media (max-width: 850px) { .main-layout { grid-template-columns: 1fr; } }
         @media (max-width: 768px) {
-            .header .student-info { display: none; }
-            .header { padding: 15px; }
             .burger-icon { display: block; width: 30px; height: 20px; position: relative; cursor: pointer; margin: 0 auto; }
             .burger-icon span, .burger-icon span:before, .burger-icon span:after { content: ''; display: block; width: 100%; height: 3px; background: #38bdf8; position: absolute; transition: 0.3s; }
             .burger-icon span:before { top: -8px; }
@@ -79,8 +82,10 @@
             .burger-checkbox:checked ~ .burger-icon span:before { transform: rotate(45deg); top: 0; }
             .burger-checkbox:checked ~ .burger-icon span:after { transform: rotate(-45deg); bottom: 0; }
             .block { width: 100%; }
-            .main-layout { grid-template-columns: 1fr; }
-            .buy-box { grid-column: span 1; }
+            .order-main { grid-template-columns: 1fr; }
+            .order-grid { grid-template-columns: 1fr; }
+            .order-cell.head { display: none; }
+            .order-center { text-align: left; }
         }
 
         .footer { background: #0f172a; color: #94a3b8; text-align: center; padding: 20px; font-size: 13px; border-top: 1px solid #334155; }
@@ -88,90 +93,101 @@
     </style>
 </head>
 <body>
-        <div class="nav">
-            <input type="checkbox" id="burger" class="burger-checkbox">
-            <label for="burger" class="burger-icon">
-                <span></span>
-            </label>
-            <div class="nav-links">
-                <a href="#">Главная</a>
-                <a href="#">О нас</a>
-                <a href="#">Услуги</a>
-                <a href="#">Портфолио</a>
-                <a href="#">Блог</a>
-                <a href="#">Контакты</a>
-            </div>
+    <div class="nav">
+        <input type="checkbox" id="burger" class="burger-checkbox">
+        <label for="burger" class="burger-icon"><span></span></label>
+        <div class="nav-links">
+            <a href="#">Главная</a>
+            <a href="#">О нас</a>
+            <a href="#">Услуги</a>
+            <a href="#">Портфолио</a>
+            <a href="#">Блог</a>
+            <a href="#">Контакты</a>
         </div>
-        
-        <div class="row">
-            <div class="block">
-                <div class="page-wrapper">
-                    <div class="product-card">
-                        <h1 class="product-title">Камера для улицы SafeVision Pro</h1>
+    </div>
 
-                        <div class="main-layout">
-                            <div class="image-section">
-                                <div class="badges">
-                                    <span class="badge hit">Хит</span>
-                                    <span class="badge action">Акция</span>
-                                </div>
-                                <div class="main-img-container">
-                                    <img src="/Images/main.png" alt="SafeVision Pro">
-                                </div>
-                                <div class="thumbs">
-                                    <div class="thumb"><img src="/Images/main.png" alt=""></div>
-                                    <div class="thumb"><img src="/Images/2.jpg" alt=""></div>
-                                    <div class="thumb"><img src="/Images/3.jpg" alt=""></div>
-                                    <div class="thumb"><img src="/Images/4.jpg" alt=""></div>
-                                </div>
-                            </div>
-
-                            <div class="specs-section">
-                                <span class="sku">Артикул: 2753867</span>
-                                <div class="spec-item"><span class="spec-label">Разрешение:</span><span class="spec-value">720p</span></div>
-                                <div class="spec-item"><span class="spec-label">Сжатие видео:</span><span class="spec-value">H.264</span></div>
-                                <div class="spec-item"><span class="spec-label">Частота кадров:</span><span class="spec-value">100 к/с</span></div>
-                                <div class="spec-item"><span class="spec-label">Объектив:</span><span class="spec-value">1.78 мм</span></div>
-                                <div class="spec-item"><span class="spec-label">Защита от воды:</span><span class="spec-value">да</span></div>
-                                <div class="spec-item"><span class="spec-label">Синхронизация:</span><span class="spec-value">внутренняя</span></div>
-                                <div class="spec-item"><span class="spec-label">Угол обзора:</span><span class="spec-value">92°</span></div>
-                                <a href="#" class="all-specs">Все характеристики</a>
-                            </div>
-
-                            <div class="buy-box">
-                                <div class="price">96 000 <span>руб</span></div>
-                                <span class="stock-status">В наличии</span>
-                                <p class="delivery-note">Доставка будет осуществлена в течении двух недель с момента оформления заказа</p>
-                                <button class="add-to-cart">В корзину</button>
+    <div class="row">
+        <div class="block">
+            <div class="page-wrapper">
+                <div class="product-card">
+                    <h1 class="product-title">Камера для улицы SafeVision Pro</h1>
+                    <div class="main-layout">
+                        <div class="image-section">
+                            <div class="badges"><span class="badge hit">Хит</span><span class="badge action">Акция</span></div>
+                            <div class="main-img-container"><img src="./Images/main.png" alt="SafeVision Pro"></div>
+                            <div class="thumbs">
+                                <div class="thumb"><img src="./Images/main.png" alt=""></div>
+                                <div class="thumb"><img src="./Images/2.jpg" alt=""></div>
+                                <div class="thumb"><img src="./Images/3.jpg" alt=""></div>
+                                <div class="thumb"><img src="./Images/4.jpg" alt=""></div>
                             </div>
                         </div>
+                        <div class="specs-section">
+                            <span class="sku">Артикул: 2753867</span>
+                            <div class="spec-item"><span class="spec-label">Разрешение:</span><span class="spec-value">720p</span></div>
+                            <div class="spec-item"><span class="spec-label">Сжатие видео:</span><span class="spec-value">H.264</span></div>
+                            <div class="spec-item"><span class="spec-label">Частота кадров:</span><span class="spec-value">100 к/с</span></div>
+                            <div class="spec-item"><span class="spec-label">Объектив:</span><span class="spec-value">1.78 мм</span></div>
+                            <div class="spec-item"><span class="spec-label">Защита от воды:</span><span class="spec-value">да</span></div>
+                            <div class="spec-item"><span class="spec-label">Синхронизация:</span><span class="spec-value">внутренняя</span></div>
+                            <div class="spec-item"><span class="spec-label">Угол обзора:</span><span class="spec-value">92°</span></div>
+                            <a href="#" class="all-specs">Все характеристики</a>
+                        </div>
+                        <div class="buy-box">
+                            <div class="price">96 000 <span>руб</span></div>
+                            <span class="stock-status">В наличии</span>
+                            <p class="delivery-note">Доставка будет осуществлена в течение двух недель с момента оформления заказа</p>
+                            <button class="add-to-cart">В корзину</button>
+                        </div>
                     </div>
-                    <div class="bottom-layer"></div>
                 </div>
+                <div class="bottom-layer"></div>
             </div>
-            
-            <div class="block">
-                <div class="developer-name">
-                    Разработал:
-                    <span>Тупик Павел Николаевич, Лабораторная работа №8 по предмету "Программные средства создания Internet-приложений"</span>
-                </div>
-            </div>
-            
-            <div class="block" style="padding: 20px;">
-                <img src="/Images/vibecat1.jpg" alt="Фото кота" class="profile-photo">
-            </div>
-            
-            <div class="block">Блок 4</div>
-            <div class="block">Блок 5</div>
-            <div class="block">Блок 6</div>
         </div>
 
-        <div class="footer">
-            <p>© 2026 Адаптивная вёрстка | Лабораторная работа №5</p>
+        <div class="block">
+            <div class="developer-name">
+                Разработал:
+                <span>Тупик Павел Николаевич, Лабораторная работа №8 по предмету "Программные средства создания Internet-приложений"</span>
+            </div>
         </div>
-        <div class="group-info">
-            Выполнил: Тупик Павел Николаевич (ПЗТ-43). Все 15 свойств Flexbox включены.
+
+        <div class="block" style="padding: 20px;">
+            <img src="./Images/vibecat1.jpg" alt="Фото кота" class="profile-photo">
         </div>
+
+        <div class="block order-block">
+            <div class="order-wrap">
+                <div class="order-title">Оформление заказа:</div>
+                <div class="order-main">
+                    <div class="order-form">
+                        <label>ФИО *</label>
+                        <input type="text">
+                        <label>Телефон *</label>
+                        <input type="tel" placeholder="0XX-XXX-XX-XX">
+                        <label>E-mail *</label>
+                        <input type="email">
+                        <label>Доставка *</label>
+                        <select><option>Выберите способ доставки</option></select>
+                        <label>Комментарий</label>
+                        <textarea></textarea>
+                    </div>
+                    <div class="order-summary">
+                        <div class="order-head">Выбрано 2 товара на сумму 1174 грн.</div>
+                        <div class="order-grid">
+                            <div class="order-cell head">Товар</div><div class="order-cell head order-center">Кол-во</div><div class="order-cell head order-center">Цена</div><div class="order-cell head order-center">Итого</div>
+                            <div class="order-cell"><div class="order-prod"><img src="./Images/korall.jpeg" alt="Платье"><span>Платье Клэр</span></div></div><div class="order-cell order-center">1</div><div class="order-cell order-center">422</div><div class="order-cell order-center">422</div>
+                            <div class="order-cell"><div class="order-prod"><img src="./Images/rain.jpg" alt="Набор"><span>KC001</span></div></div><div class="order-cell order-center">1</div><div class="order-cell order-center">752</div><div class="order-cell order-center">752</div>
+                        </div>
+                        <div class="order-total"><span>Сумма к оплате:</span><strong>1174 грн</strong></div>
+                        <div class="order-btn-wrap"><button class="order-btn">Оформить заказ</button></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="block">Блок 5</div>
+        <div class="block">Блок 6</div>
     </div>
 </body>
 </html>
