@@ -1,6 +1,6 @@
-      @font-face {
+        @font-face {
             font-family: 'Aeroport';
-            src: url('ttf/Aeroport.otf') format('opentype');
+            src: url('../ttf/Aeroport.otf') format('opentype');
             font-weight: normal;
             font-style: normal;
         }
@@ -624,7 +624,7 @@
             align-items: center;
             justify-content: center;
             transition: transform 0.3s;
-            background-image: url('image/arrow-top.png');
+            background-image: url('../image/arrow-top.png');
             background-repeat: no-repeat;
             background-position: center;
             background-size: 20px;
@@ -718,10 +718,14 @@
             .hero { padding: 40px 20px; text-align: center; flex-direction: column; min-height: auto; }
             .hero-images { display: none; }
             .hero-content { max-width: 100%; }
+            .hero-content h1 { font-size: 34px; line-height: 1.15; }
             .btn-course { width: 100%; }
             .stats { grid-template-columns: repeat(2, 1fr); gap: 20px; }
             .learn-steps { grid-template-columns: 1fr; }
-            .learn-section h2 { font-size: 32px; }
+            .learn-section h2 { font-size: 30px; }
+            .reviews-header h2 { font-size: 30px; }
+            .contact-text h2 { font-size: 24px; }
+            .step-item h3 { font-size: 18px; }
             
             .reviews-grid { column-count: 1; }
             .reviews-header { flex-direction: column; align-items: flex-start; gap: 10px; }
@@ -733,7 +737,6 @@
                 max-width: 90%;
                 border-radius: 30px;
             }
-            .contact-text h2 { font-size: 26px; }
             .contact-form input { padding: 15px 20px; font-size: 14px; }
             .form-row { flex-direction: column; }
             .form-footer { flex-direction: column; gap: 15px; }
