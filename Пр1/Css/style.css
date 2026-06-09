@@ -24,6 +24,10 @@
             width: 100%;
         }
 
+        body > .container {
+            position: relative;
+        }
+
         .promo-header {
             background-color: #000;
             height: 60px;
@@ -76,7 +80,11 @@
             justify-content: space-between;
             align-items: center;
             padding: 25px 0;
-            position: relative;
+            position: absolute;
+            top: 0;
+            left: 20px;
+            right: 20px;
+            z-index: 100;
         }
 
         .logo-section {
@@ -169,7 +177,7 @@
         .hero-wrapper {
             position: relative;
             max-width: 1240px;
-            margin: 0 auto 60px;
+            margin: 95px auto 60px;
         }
 
         .hero {
