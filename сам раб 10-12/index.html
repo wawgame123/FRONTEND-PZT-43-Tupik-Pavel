@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Вариант 73</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script>
+    // Задание 1. Скрипт в head: работа с объектом Date.
+    function showCurrentTime() {
+      const now = new Date();
+      const hours = String(now.getHours()).padStart(2, "0");
+      const minutes = String(now.getMinutes()).padStart(2, "0");
+
+      alert("Текущее время: " + hours + "-" + minutes);
+    }
+  </script>
+</head>
+<body>
+  <main>
+    <h1>Тематический контроль знаний, вариант 73</h1>
+
+    <!-- Задание 1. Работа с объектом Date. -->
+    <section class="task">
+      <h2>1. Работа с объектом Date</h2>
+      <p>Вывести дату в диалоговое окно в формате часы-минуты.</p>
+      <button type="button" onclick="showCurrentTime()">Показать время</button>
+    </section>
+
+    <!-- Задание 2. Оператор цикла while. -->
+    <section class="task">
+      <h2>2. Оператор цикла while</h2>
+      <p>Вывести фамилию и имя n - 3 раз. Для варианта 21: 21 - 3 = 18 повторений.</p>
+      <div class="controls">
+        <label>
+          Фамилия
+          <input id="lastName" type="text" value="Тупик">
+        </label>
+        <label>
+          Имя
+          <input id="firstName" type="text" value="Павел">
+        </label>
+        <button type="button" onclick="printFullName()">Вывести</button>
+      </div>
+      <div id="cycleResult" class="result"></div>
+    </section>
+
+    <!-- Задание 3. Работа с объектом Array. -->
+    <section class="task">
+      <h2>3. Работа с объектом Array</h2>
+      <p>Сформировать массив из 7 целых элементов, найти произведение отрицательных элементов и заменить отрицательные элементы числом 100.</p>
+      <div class="controls">
+        <label>
+          1
+          <input class="array-number" type="number" value="-8">
+        </label>
+        <label>
+          2
+          <input class="array-number" type="number" value="4">
+        </label>
+        <label>
+          3
+          <input class="array-number" type="number" value="-3">
+        </label>
+        <label>
+          4
+          <input class="array-number" type="number" value="12">
+        </label>
+        <label>
+          5
+          <input class="array-number" type="number" value="-2">
+        </label>
+        <label>
+          6
+          <input class="array-number" type="number" value="7">
+        </label>
+        <label>
+          7
+          <input class="array-number" type="number" value="-1">
+        </label>
+        <button type="button" onclick="processArray()">Обработать</button>
+      </div>
+      <div id="arrayResult" class="result"></div>
+    </section>
+
+    <!-- Задание 4. Работа с объектом Math. Скрипт подключен из js/task4.js. -->
+    <section class="task">
+      <h2>4. Работа с объектом Math</h2>
+      <p>Расчет по формуле с использованием пользовательской функции.</p>
+      <p class="formula">y = (2x - 7) / (5x), где a = 2, b = -7, c = 5, d = 0</p>
+      <div class="controls">
+        <label>
+          x
+          <input id="xValue" type="number" value="3" step="any">
+        </label>
+        <button type="button" onclick="showFormulaResult()">Рассчитать</button>
+      </div>
+      <div id="mathResult" class="result"></div>
+    </section>
+
+    <!-- Задание 5. Работа со строками String. Скрипт подключен из js/task5.js. -->
+    <section class="task">
+      <h2>5. Работа со строками String</h2>
+      <p>S1 = "Я люблю Беларусь", S2 = "Я учусь в Политехническом колледже."</p>
+      <div class="controls">
+        <label>
+          Номер символа в S1
+          <input id="symbolNumber" type="number" value="21" min="1">
+        </label>
+        <button type="button" onclick="processStrings()">Обработать строки</button>
+      </div>
+      <div id="stringResult" class="result"></div>
+    </section>
+  </main>
+
+  <script>
+    const variantNumber = 21;
+
+    // Задание 2. Скрипт в body: вывод фамилии и имени через цикл while.
+    function printFullName() {
+      const lastName = document.getElementById("lastName").value.trim() || "Тупик";
+      const firstName = document.getElementById("firstName").value.trim() || "Павел";
+      const repeatCount = variantNumber - 3;
+      const lines = [];
+      let i = 1;
+
+      while (i <= repeatCount) {
+        lines.push(i + ". " + lastName + " " + firstName);
+        i++;
+      }
+
+      document.getElementById("cycleResult").textContent = lines.join("\n");
+    }
+
+    // Задание 3. Скрипт в body: обработка массива из 7 элементов.
+    function processArray() {
+      const inputs = document.querySelectorAll(".array-number");
+      const originalArray = Array.from(inputs, function(input) {
+        return Number(input.value);
+      });
+      let product = 1;
+      let hasNegative = false;
+
+      const changedArray = originalArray.map(function(number) {
+        if (number < 0) {
+          product *= number;
+          hasNegative = true;
+          return 100;
+        }
+
+        return number;
+      });
+
+      document.getElementById("arrayResult").textContent =
+        "Исходный массив: " + originalArray.join(", ") + "\n" +
+        "Произведение отрицательных элементов: " + (hasNegative ? product : "отрицательных элементов нет") + "\n" +
+        "Измененный массив: " + changedArray.join(", ");
+    }
+
+    processArray();
+  </script>
+  <!-- Задание 4. Внешний JS-файл. -->
+  <script src="js/task4.js"></script>
+  <!-- Задание 5. Внешний JS-файл. -->
+  <script src="js/task5.js"></script>
+</body>
+</html>
