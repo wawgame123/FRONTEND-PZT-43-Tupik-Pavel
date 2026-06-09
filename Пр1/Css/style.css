@@ -18,14 +18,14 @@
         }
 
         :root {
-            --page-gap: 5px;
+            --page-gap: 15px;
         }
 
         .container {
             max-width: none;
             margin: 0 auto;
-            padding: 0 var(--page-gap);
-            width: 100%;
+            padding: 0;
+            width: calc(100% - (var(--page-gap) * 2));
         }
 
         body > .container {
@@ -232,33 +232,34 @@
 
         .hero-images {
             position: absolute;
-            right: 0;
+            right: clamp(40px, 5vw, 100px);
             top: 50%;
             transform: translateY(-50%);
-            width: 50%;
+            width: clamp(520px, 42vw, 760px);
             height: 100%;
             pointer-events: none;
         }
 
         .phone {
             position: absolute;
-            height: 110%;
+            height: auto;
             object-fit: contain;
         }
 
         .phone-back {
-            right: -100px;
-            top: -15%;
+            right: 0;
+            top: 8%;
             z-index: 1;
-            width: 85%;
-            height: 150%;
+            width: clamp(360px, 28vw, 540px);
+            height: auto;
         }
 
         .phone-front {
-            right: 120px;
-            top: -5%;
+            right: clamp(190px, 14vw, 260px);
+            top: 4%;
             z-index: 2;
             transform: scaleX(0.9);
+            width: clamp(330px, 25vw, 480px);
         }
 
         .slider-arrow {
@@ -606,7 +607,8 @@
         .footer .container {
             max-width: none;
             margin: 0 auto;
-            padding: 0 var(--page-gap);
+            padding: 0;
+            width: calc(100% - (var(--page-gap) * 2));
             position: relative;
         }
 
@@ -709,7 +711,7 @@
             .promo-text { margin-left: 0; }
             .hero-content h1 { font-size: 38px; }
             .phone-back { display: none; }
-            .phone-front { right: 40px; top: 50%; transform: translateY(-50%); height: 90%; }
+            .phone-front { right: 40px; top: 50%; transform: translateY(-50%); width: auto; height: 90%; }
             .learn-steps { grid-template-columns: repeat(2, 1fr); }
             .stats { grid-template-columns: repeat(2, 1fr); }
             .slider-arrow, .slider-dots { display: none !important; }
@@ -731,7 +733,7 @@
 
         @media (max-width: 768px) {
             header {
-                margin: 0 calc(-1 * var(--page-gap));
+                margin: 0;
                 padding: 18px 20px;
             }
             nav { display: none; position: absolute; top: 100%; left: 0; width: 100%; background: #fff; padding: 20px; box-shadow: 0 10px 20px rgba(0,0,0,0.1); z-index: 99; }
